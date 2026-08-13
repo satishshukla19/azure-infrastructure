@@ -63,6 +63,7 @@ stages:
             command: 'validate'
             workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
         - task: tfsec@1
+          continueOnError: false
           inputs:
             version: 'v1.26.0'
             dir: '$(System.DefaultWorkingDirectory)/terraform'
