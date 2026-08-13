@@ -1,0 +1,47 @@
+trigger: none
+pool: Default
+
+# parameters:
+# - name: envorment
+#   type: string
+#   default: dev
+#   values:
+#   - dev
+#   - qa
+#   - prod
+
+# variables:
+# - name: workingDir
+#   value: envorment/${{ parameters.envorment }}
+
+# - ${{ if eq(parameters.envorment, 'dev') }}:
+#   - group: infra-test-july-terraform-dev
+
+# - ${{ if eq(parameters.envorment, 'qa') }}:
+#   - group: infra-test-july-terraform-qa
+
+# - ${{ if eq(parameters.envorment, 'prod') }}:
+#   - group: infra-test-july-terraform-prod
+ 
+
+stages:
+  - stage:
+    displayName: Package install 
+    jobs:
+      - job: 
+        displayName: Agent packege install
+        steps:
+        - script: sudo apt install unzip -y
+        - script: sudo apt install openjdk-17-jdk -y
+        - script: sudo apt install python3-pip -y
+
+
+stages:
+  - stage: 
+    displayName: terraform init
+    jobs:
+      - job: 
+        steps:
+        - task: TerraformInstaller@1
+          inputs:
+            terraformVersion: 'latest'
