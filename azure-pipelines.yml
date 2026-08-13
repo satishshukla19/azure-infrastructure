@@ -36,7 +36,7 @@ stages:
         - script: sudo apt install python3-pip -y
 
 
-stages:
+
   - stage: 
     displayName: terraform init
     jobs:
